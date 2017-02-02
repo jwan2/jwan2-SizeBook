@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">jwan2-SizeBook</string>
+    <string name="edit_person">Edit</string>
+    <string name="add_person">Add</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
 </resources>
