@@ -4,24 +4,141 @@
     android:id="@+id/activity_add_record"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.jwan2_sizebook.addRecordActivity">
+    tools:context="com.jwan2_sizebook.addRecordActivity"
+    android:weightSum="1">
+
 
     <EditText
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:hint="@string/first_name"
-        android:id="@+id/editText" />
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/checsText"
+        android:hint="@string/chest"
+        android:layout_below="@+id/bustText"
+        android:layout_alignStart="@+id/bustText" />
 
     <EditText
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:hint="@string/last_name"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentStart="true"
-        android:id="@+id/editText2" />
+        android:id="@+id/lastNameText"
+        android:inputType="textCapWords|textPersonName"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/firstNameText"
+        android:maxLines="1" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/date_format"
+        android:id="@+id/dateText"
+        android:inputType="date"
+        android:layout_below="@+id/lastNameText"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:inputType="none"
+        android:ems="10"
+        android:text="@string/ask_for_date"
+        android:clickable="false"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:labelFor="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/label1"
+        tools:ignore="LabelFor"
+        android:layout_alignBaseline="@+id/dateText"
+        android:layout_alignBottom="@+id/dateText"
+        android:layout_toStartOf="@+id/dateText"
+        android:editable="false" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:text="@string/add_size"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/label1"
+        android:layout_alignStart="@+id/label1"
+        android:layout_toStartOf="@+id/dateText"
+        android:layout_alignParentEnd="true"
+        android:inputType=""
+        tools:ignore="LabelFor"
+        android:editable="false" />
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:hint="@string/first_name"
+        android:id="@+id/firstNameText"
+        android:inputType="textPersonName"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/label1"
+        android:maxLines="1" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/bustText"
+        android:hint="@string/bust"
+        android:layout_below="@+id/nectText"
+        android:layout_alignStart="@+id/nectText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/waistText"
+        android:hint="@string/waist"
+        android:layout_below="@+id/checsText"
+        android:layout_alignStart="@+id/checsText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/inseamText"
+        android:hint="@string/inseam"
+        android:layout_below="@+id/waistText"
+        android:layout_alignStart="@+id/waistText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/nectText"
+        android:hint="@string/neck"
+        android:layout_below="@+id/editText5"
+        android:layout_alignStart="@+id/editText5" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/inseamText"
+        android:layout_marginTop="8dp"
+        android:id="@+id/commentText"
+        android:hint="@string/comments"
+        android:maxLines="2" />
+
+    <Button
+        android:text="@string/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/confirm_buttom" />
+
 </RelativeLayout>

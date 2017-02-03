@@ -4,4 +4,15 @@
     <string name="add_person">Add</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+    <string name="ask_for_date">Please enter date</string>
+    <string name="date_format">yyyy-mm-dd</string>
+    <string name="add_size">Please enter the following sizes in inches, numeric</string>
+    <string name="neck">neck size</string>
+    <string name="bust">bust size</string>
+    <string name="chest">chest size</string>
+    <string name="waist">waist size</string>
+    <string name="hip">hip size</string>
+    <string name="inseam">inseam length</string>
+    <string name="comments">Write comments</string>
+    <string name="confirm">Confirm</string>
 </resources>
