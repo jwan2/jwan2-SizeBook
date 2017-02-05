@@ -1,6 +1,7 @@
 package com.jwan2_sizebook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.icu.text.AlphabeticIndex;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +13,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.Date;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -38,9 +43,12 @@ public class addRecordActivity extends AppCompatActivity {
     private EditText waistT;
     private EditText inseamT;
     private EditText commentT;
+    private Boolean doneSave;
 
 
-    private ArrayList <Record> RecordList;
+
+    private ArrayList <Record> recordList;
+    private ArrayAdapter<Record> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +64,14 @@ public class addRecordActivity extends AppCompatActivity {
         waistT = (EditText) findViewById(R.id.waistText);
         inseamT = (EditText) findViewById(R.id.inseamText);
         commentT = (EditText) findViewById(R.id.commentText);
+        doneSave = Boolean.FALSE;
 
         Button comfirmButton = (Button) findViewById(R.id.confirm_buttom);
+
 
         comfirmButton.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){
-                setResult(RESULT_OK);
                 String firstName = FirstNameT.getText().toString();
                 String lastName = LastNameT.getText().toString();
                 String dateText = dateT.getText().toString();
@@ -83,6 +92,7 @@ public class addRecordActivity extends AppCompatActivity {
                     toast.show();
 
                 }else {
+                    setResult(RESULT_OK);
                     Record record = new Record();
                     record.setFirstName(firstName);
                     record.setLastName(lastName);
@@ -95,26 +105,38 @@ public class addRecordActivity extends AppCompatActivity {
                     record.setInseam(inseamText);
                     record.setComment(commentText);
 
-                    RecordList = new ArrayList<Record>();
-                    RecordList.add(record);
+
+                    recordList.add(record);
 
                     saveInFile();
+                    doneSave = Boolean.TRUE;
+                    if (doneSave) {
+                        Intent intent = new Intent(v.getContext(), HomeScreenActivity.class);
+                        startActivity(intent);
+                    }
+
+                }
                 }
 
-            }
+            });
 
-        });
+        }
 
-    }
 
     @Override
     protected void onStart(){
         super.onStart();
-
-
+        loadFromFile();
 
     }
 
+    //go back to homescreen
+    //public void homeScreen(View view) {
+      //  if (doneSave) {
+        //    Intent intent = new Intent(this, HomeScreenActivity.class);
+          //  startActivity(intent);
+       // }
+   // }
 
     private void saveInFile() {
         try {
@@ -123,7 +145,7 @@ public class addRecordActivity extends AppCompatActivity {
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
 
             Gson gson = new Gson();
-            gson.toJson(RecordList, out);
+            gson.toJson(recordList, out);
 
             out.flush();
 
@@ -133,6 +155,26 @@ public class addRecordActivity extends AppCompatActivity {
         } catch (IOException e){
             throw new RuntimeException();
         }
+    }
+
+    private void loadFromFile(){
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader (new InputStreamReader(fis));
+
+            Gson gson = new Gson();
+
+            recordList = gson.fromJson(in, new TypeToken<ArrayList<Record>>() {
+            }.getType());
+
+            fis.close();
+        }catch (FileNotFoundException e){
+            recordList = new ArrayList<Record>();
+        }catch (IOException e){
+            throw new RuntimeException();
+        }
+
+
     }
 
 }

@@ -8,9 +8,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.jwan2_sizebook.HomeScreen">
+    tools:context="com.jwan2_sizebook.HomeScreenActivity">
 
     <!--A button to add records-->
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,20 +22,30 @@
         android:onClick="addRecord"/>
 
     <!--A button to edit(can be removed by better idea)-->
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/add_button"
-        android:layout_marginStart="17dp"
-        android:id="@+id/edit_button"
-        android:text="@string/edit_person"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/add_button"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/recordListView"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:text="@string/edit_person"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/delete_button"
+        android:onClick="delete"
+        android:text="@string/delete_person"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

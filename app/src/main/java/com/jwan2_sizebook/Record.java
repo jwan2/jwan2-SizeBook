@@ -1,6 +1,9 @@
 package com.jwan2_sizebook;
 
-import java.util.Date;
+import java.text.DecimalFormat;
+
+import static java.lang.Math.round;
+
 
 /**
  * Created by Jia on 2017/2/2.
@@ -113,8 +116,24 @@ public class Record {
         this.comment = comment;
     }
 
+    @Override
+    public String toString(){
+        String out;
+        out = "Name: " + lastName + " " + firstName + "\n"
+                +"Bust: " + bust +"\n"
+                +"Chest: " + chest +"\n"
+                +"Waist: " + waist +"\n"
+                +"Inseam: " + inseam +"\n";
+        return out;
+    }
 
-
+//    public String Round(String num){
+//        String output;
+//        Float float1;
+//        float1 = Float.parseFloat(num);
+//        output = new DecimalFormat("#.##").format(float1);
+//        return output;
+//    }
 
 
 
