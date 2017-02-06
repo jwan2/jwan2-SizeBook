@@ -21,7 +21,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/count"
-        android:choiceMode="singleChoice"/>
+        android:choiceMode="singleChoice"
+        android:listSelector="@android:color/darker_gray"/>
 
     <Button
         android:text="Detial"

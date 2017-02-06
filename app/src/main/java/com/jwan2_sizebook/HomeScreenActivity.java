@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.jwan2_sizebook.R.drawable.selector;
+
 
 /**
  * The type Home screen activity.
