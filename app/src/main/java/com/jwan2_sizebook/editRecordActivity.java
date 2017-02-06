@@ -23,6 +23,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
+/**
+ * The type Edit record activity.
+ */
 public class editRecordActivity extends AppCompatActivity {
 
     private static final String FILENAME = "file.sav";

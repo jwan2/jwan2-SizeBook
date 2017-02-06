@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 
+/**
+ * The type Show detail activity.
+ */
 public class showDetailActivity extends AppCompatActivity {
     private TextView detail_record;
 

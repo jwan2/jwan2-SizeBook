@@ -186,15 +186,6 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="@string/waist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView12"
-        style="?attr/autoCompleteTextViewStyle"
-        android:layout_below="@+id/chest_label"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="@string/hip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -203,23 +194,5 @@
         android:layout_alignBottom="@+id/hipText"
         android:layout_alignParentStart="true"
         style="?attr/autoCompleteTextViewStyle" />
-
-    <TextView
-        android:text="@string/waist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView14"
-        style="?attr/autoCompleteTextViewStyle"
-        android:layout_below="@+id/chest_label"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="@string/waist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView13"
-        style="?attr/autoCompleteTextViewStyle"
-        android:layout_below="@+id/chest_label"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

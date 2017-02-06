@@ -28,19 +28,55 @@ import android.widget.Toast;
 
 import static com.jwan2_sizebook.R.drawable.selector;
 
+/**
+ * The type Home screen activity.
+ */
 public class HomeScreenActivity extends AppCompatActivity {
 
     private static final String FILENAME = "file.sav";
+    /**
+     * The constant EXTRA_DETAIL.
+     */
     public final static String EXTRA_DETAIL = "com.jwan2_sizebook.DETAIL";
+    /**
+     * The constant EXTRA_NAME.
+     */
     public final static String EXTRA_NAME = "com.jwan2_sizebook.NAME";
+    /**
+     * The constant EXTRA_DATE.
+     */
     public final static String EXTRA_DATE = "com.jwan2_sizebook.DATE";
+    /**
+     * The constant EXTRA_NECK.
+     */
     public final static String EXTRA_NECK = "com.jwan2_sizebook.NECK";
+    /**
+     * The constant EXTRA_BUST.
+     */
     public final static String EXTRA_BUST = "com.jwan2_sizebook.BUST";
+    /**
+     * The constant EXTRA_CHEST.
+     */
     public final static String EXTRA_CHEST = "com.jwan2_sizebook.CHEST";
+    /**
+     * The constant EXTRA_WAIST.
+     */
     public final static String EXTRA_WAIST = "com.jwan2_sizebook.WAIST";
+    /**
+     * The constant EXTRA_HIP.
+     */
     public final static String EXTRA_HIP = "com.jwan2_sizebook.HIP";
+    /**
+     * The constant EXTRA_INSEAM.
+     */
     public final static String EXTRA_INSEAM = "com.jwan2_sizebook.INSEAM";
+    /**
+     * The constant EXTRA_COMMENT.
+     */
     public final static String EXTRA_COMMENT = "com.jwan2_sizebook.COMMENT";
+    /**
+     * The constant EXTRA_INDEX.
+     */
     public final static String EXTRA_INDEX = "com.jwan2_sizebook.INDEX";
 
     private ArrayList<Record> recordList;
@@ -114,7 +150,12 @@ public class HomeScreenActivity extends AppCompatActivity {
     }
 
 
-    /* Called when the user click the add button */
+    /**
+     * Add record.
+     *
+     * @param view the view
+     */
+/* Called when the user click the add button */
     public void addRecord(View view){
         /* This gonna jump to Activity about adding record*/
         Intent intent = new Intent(this, addRecordActivity.class);
@@ -122,6 +163,11 @@ public class HomeScreenActivity extends AppCompatActivity {
         finish();
     }
 
+    /**
+     * Show detail.
+     *
+     * @param view the view
+     */
     public void showDetail(View view) {
         if (selected == null) {
             Context context = getApplicationContext();
@@ -149,6 +195,11 @@ public class HomeScreenActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Edit record.
+     *
+     * @param view the view
+     */
     public void editRecord(View view){
         if (selected == null) {
             Context context = getApplicationContext();
