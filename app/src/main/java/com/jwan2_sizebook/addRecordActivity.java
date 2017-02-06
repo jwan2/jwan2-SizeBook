@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
+/**
+ * The type Add record activity.
+ */
 public class addRecordActivity extends AppCompatActivity {
 
     private static final String FILENAME = "file.sav";
@@ -105,6 +108,7 @@ public class addRecordActivity extends AppCompatActivity {
                     if (doneSave) {
                         Intent intent = new Intent(v.getContext(), HomeScreenActivity.class);
                         startActivity(intent);
+                        finish();
                     }
 
                 }
@@ -122,13 +126,6 @@ public class addRecordActivity extends AppCompatActivity {
 
     }
 
-    //go back to homescreen
-    //public void homeScreen(View view) {
-      //  if (doneSave) {
-        //    Intent intent = new Intent(this, HomeScreenActivity.class);
-          //  startActivity(intent);
-       // }
-   // }
 
     private void saveInFile() {
         try {

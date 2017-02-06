@@ -139,6 +139,7 @@ public class editRecordActivity extends AppCompatActivity {
                     if (doneSave) {
                         Intent intent = new Intent(v.getContext(), HomeScreenActivity.class);
                         startActivity(intent);
+                        finish();
                     }
 
                 }

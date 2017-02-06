@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.jwan2_sizebook.R.drawable.selector;
+
 public class HomeScreenActivity extends AppCompatActivity {
 
     private static final String FILENAME = "file.sav";
@@ -88,6 +90,7 @@ public class HomeScreenActivity extends AppCompatActivity {
                     adapter.remove(selected);
                     saveInFile();
                     count.setText("Number of records = " + recordList.size());
+                    selected = null;
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -100,6 +103,7 @@ public class HomeScreenActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
+        selected = null;
         loadFormFile();
         count.setText("Number of records = " + recordList.size());
 
@@ -115,6 +119,7 @@ public class HomeScreenActivity extends AppCompatActivity {
         /* This gonna jump to Activity about adding record*/
         Intent intent = new Intent(this, addRecordActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void showDetail(View view) {
@@ -176,8 +181,8 @@ public class HomeScreenActivity extends AppCompatActivity {
             intent.putExtra(EXTRA_COMMENT, comment);
             index = ""+recordList.indexOf(selected);
             intent.putExtra(EXTRA_INDEX, index);
-
             startActivity(intent);
+            finish();
 
         }
 
