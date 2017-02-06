@@ -15,7 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addRecordActivity"></activity>
+        <activity android:name=".addRecordActivity" />
+        <activity android:name=".showDetailActivity" />
+        <activity
+            android:name=".editRecordActivity2"
+            android:label="@string/title_activity_edit_record2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".editRecordActivity"></activity>
     </application>
 
 </manifest>

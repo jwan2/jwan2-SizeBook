@@ -12,40 +12,59 @@
 
     <!--A button to add records-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/add_button"
-        android:text="@string/add_person"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:onClick="addRecord"/>
-
     <!--A button to edit(can be removed by better idea)-->
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/recordListView"
+        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/add_button"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/recordListView"/>
+        android:layout_above="@+id/count"
+        android:choiceMode="singleChoice"/>
 
     <Button
+        android:text="Detial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:text="@string/edit_person"
+        android:id="@+id/detail_button"
+        android:onClick="showDetail"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/count"
+        android:layout_above="@+id/delete_button"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/delete_button"
-        android:onClick="delete"
         android:text="@string/delete_person"
-        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/detail_button"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_button"
+        android:text="@string/edit_person"
+        android:onClick="editRecord"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_button"
+        android:text="@string/add_person"
+        android:onClick="addRecord"
+        android:layout_below="@+id/count"
+        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>

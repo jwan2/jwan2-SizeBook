@@ -10,25 +10,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
-public class addRecordActivity extends AppCompatActivity {
+public class editRecordActivity extends AppCompatActivity {
 
     private static final String FILENAME = "file.sav";
 
-    private EditText NameT;
+    private EditText nameT;
     private EditText dateT;
     private EditText neckT;
     private EditText bustT;
@@ -39,16 +38,28 @@ public class addRecordActivity extends AppCompatActivity {
     private EditText commentT;
     private Boolean doneSave;
 
+    private String name;
+    private String date;
+    private String neck;
+    private String bust;
+    private String chest;
+    private String waist;
+    private String hip;
+    private String inseam;
+    private String comment;
+    private String index;
 
-    private ArrayList <Record> recordList;
+
+    private ArrayList<Record> recordList;
     private ArrayAdapter<Record> adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_record);
+        setContentView(R.layout.activity_edit_record);
 
-        NameT = (EditText) findViewById(R.id.NameText);
+        nameT = (EditText) findViewById(R.id.NameText);
         dateT = (EditText) findViewById(R.id.dateText);
         neckT = (EditText) findViewById(R.id.neckText);
         bustT = (EditText) findViewById(R.id.bustText);
@@ -61,22 +72,46 @@ public class addRecordActivity extends AppCompatActivity {
 
         Button comfirmButton = (Button) findViewById(R.id.confirm_buttom);
 
+        Intent intent = getIntent();
+        name = intent.getStringExtra(HomeScreenActivity.EXTRA_NAME);
+        date = intent.getStringExtra(HomeScreenActivity.EXTRA_DATE);
+        neck = intent.getStringExtra(HomeScreenActivity.EXTRA_NECK);
+        bust = intent.getStringExtra(HomeScreenActivity.EXTRA_BUST);
+        chest = intent.getStringExtra(HomeScreenActivity.EXTRA_CHEST);
+        waist = intent.getStringExtra(HomeScreenActivity.EXTRA_WAIST);
+        hip = intent.getStringExtra(HomeScreenActivity.EXTRA_HIP);
+        inseam = intent.getStringExtra(HomeScreenActivity.EXTRA_INSEAM);
+        comment = intent.getStringExtra(HomeScreenActivity.EXTRA_COMMENT);
+        index = intent.getStringExtra(HomeScreenActivity.EXTRA_INDEX);
+
+        nameT.setText(name);
+        dateT.setText(date);
+        neckT.setText(neck);
+        bustT.setText(bust);
+        chestT.setText(chest);
+        waistT.setText(waist);
+        hipT.setText(hip);
+        inseamT.setText(inseam);
+        commentT.setText(comment);
+
+
 
         comfirmButton.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View v){
-                String Name = NameT.getText().toString();
-                String dateText = dateT.getText().toString();
-                String neckText = neckT.getText().toString();
-                String bustText = bustT.getText().toString();
-                String chestText = chestT.getText().toString();
-                String waistText = waistT.getText().toString();
-                String hipText = hipT.getText().toString();
-                String inseamText = inseamT.getText().toString();
-                String commentText = commentT.getText().toString();
+                name = nameT.getText().toString();
+                date = dateT.getText().toString();
+                neck = neckT.getText().toString();
+                bust = bustT.getText().toString();
+                chest = chestT.getText().toString();
+                waist= waistT.getText().toString();
+                hip= hipT.getText().toString();
+                inseam = inseamT.getText().toString();
+                comment = commentT.getText().toString();
+
 
                 //make a Toast when name is empty
-                if (Name.length() == 0) {
+                if (name.length() == 0) {
 
                     Context context = getApplicationContext();
                     CharSequence text = "Please at least enter your name.";
@@ -86,19 +121,18 @@ public class addRecordActivity extends AppCompatActivity {
 
                 }else {
                     setResult(RESULT_OK);
-                    Record record = new Record(Name);
-                    record.setName(Name);
-                    record.setDate(dateText);
-                    record.setNeck(neckText);
-                    record.setBust(bustText);
-                    record.setChest(chestText);
-                    record.setWaist(waistText);
-                    record.setHip(hipText);
-                    record.setInseam(inseamText);
-                    record.setComment(commentText);
+                    Record record = new Record(name);
+                    record.setName(name);
+                    record.setDate(date);
+                    record.setNeck(neck);
+                    record.setBust(bust);
+                    record.setChest(chest);
+                    record.setWaist(waist);
+                    record.setHip(hip);
+                    record.setInseam(inseam);
+                    record.setComment(comment);
 
-
-                    recordList.add(record);
+                    recordList.set(Integer.parseInt(index), record);
 
                     saveInFile();
                     doneSave = Boolean.TRUE;
@@ -112,9 +146,9 @@ public class addRecordActivity extends AppCompatActivity {
 
             });
 
-        }
+    }
 
-
+//
     @Override
     protected void onStart(){
         super.onStart();
@@ -122,13 +156,6 @@ public class addRecordActivity extends AppCompatActivity {
 
     }
 
-    //go back to homescreen
-    //public void homeScreen(View view) {
-      //  if (doneSave) {
-        //    Intent intent = new Intent(this, HomeScreenActivity.class);
-          //  startActivity(intent);
-       // }
-   // }
 
     private void saveInFile() {
         try {

@@ -12,8 +12,7 @@ import static java.lang.Math.round;
 
 public class Record {
 
-    private String firstName;
-    private String lastName;
+    private String Name;
     private String date;
     private String neck;
     private String bust;
@@ -23,9 +22,8 @@ public class Record {
     private String inseam;
     private String comment;
 
-    public Record() {
-        this.firstName = null;
-        this.lastName = null;
+    public Record(String Name) {
+        this.Name = Name;
         this.date = null;
         this.neck = null;
         this.bust = null;
@@ -44,20 +42,13 @@ public class Record {
         this.date = date;
     }
 
-    public String getFirstName() {
-        return firstName;
+
+    public String getName() {
+        return Name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
     public String getNeck() {
@@ -65,7 +56,7 @@ public class Record {
     }
 
     public void setNeck(String neck) {
-        this.neck = neck;
+        this.neck = Round(neck);
     }
 
     public String getBust() {
@@ -73,7 +64,7 @@ public class Record {
     }
 
     public void setBust(String bust) {
-        this.bust = bust;
+        this.bust = Round(bust);
     }
 
     public String getChest() {
@@ -81,7 +72,7 @@ public class Record {
     }
 
     public void setChest(String chest) {
-        this.chest = chest;
+        this.chest = Round(chest);
     }
 
     public String getWaist() {
@@ -89,7 +80,7 @@ public class Record {
     }
 
     public void setWaist(String waist) {
-        this.waist = waist;
+        this.waist = Round(waist);
     }
 
     public String getHip() {
@@ -97,7 +88,7 @@ public class Record {
     }
 
     public void setHip(String hip) {
-        this.hip = hip;
+        this.hip = Round(hip);
     }
 
     public String getInseam() {
@@ -105,7 +96,7 @@ public class Record {
     }
 
     public void setInseam(String inseam) {
-        this.inseam = inseam;
+        this.inseam = Round(inseam);
     }
 
     public String getComment() {
@@ -113,28 +104,36 @@ public class Record {
     }
 
     public void setComment(String comment) {
-        this.comment = comment;
+        if (comment.length() > 100){
+            this.comment = comment.substring(0, 100);
+        }
+        else {
+            this.comment = comment;
+        }
+    }
+
+    //Round
+    public String Round(String num){
+        if(num.equals("")){
+            return num;
+        }
+        Double output = Double.parseDouble(num);
+        output = Math.round(output * 10.0 ) / 10.0;
+        return ""+output;
     }
 
     @Override
     public String toString(){
         String out;
-        out = "Name: " + lastName + " " + firstName + "\n"
+        out = "Name: " + Name + "\n"
+                +"Neck: " + neck +"\n"
                 +"Bust: " + bust +"\n"
                 +"Chest: " + chest +"\n"
                 +"Waist: " + waist +"\n"
+                + "Hip " + hip +"\n"
                 +"Inseam: " + inseam +"\n";
         return out;
     }
-
-//    public String Round(String num){
-//        String output;
-//        Float float1;
-//        float1 = Float.parseFloat(num);
-//        output = new DecimalFormat("#.##").format(float1);
-//        return output;
-//    }
-
 
 
 

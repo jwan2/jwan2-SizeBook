@@ -22,25 +22,51 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.List;
 
-import static android.provider.Telephony.Mms.Part.FILENAME;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomeScreenActivity extends AppCompatActivity {
 
     private static final String FILENAME = "file.sav";
+    public final static String EXTRA_DETAIL = "com.jwan2_sizebook.DETAIL";
+    public final static String EXTRA_NAME = "com.jwan2_sizebook.NAME";
+    public final static String EXTRA_DATE = "com.jwan2_sizebook.DATE";
+    public final static String EXTRA_NECK = "com.jwan2_sizebook.NECK";
+    public final static String EXTRA_BUST = "com.jwan2_sizebook.BUST";
+    public final static String EXTRA_CHEST = "com.jwan2_sizebook.CHEST";
+    public final static String EXTRA_WAIST = "com.jwan2_sizebook.WAIST";
+    public final static String EXTRA_HIP = "com.jwan2_sizebook.HIP";
+    public final static String EXTRA_INSEAM = "com.jwan2_sizebook.INSEAM";
+    public final static String EXTRA_COMMENT = "com.jwan2_sizebook.COMMENT";
+    public final static String EXTRA_INDEX = "com.jwan2_sizebook.INDEX";
 
     private ArrayList<Record> recordList;
     private ArrayAdapter<Record> adapter;
     private ListView recordListView;
-
+    private TextView count;
+    private Context context;
+    private String name;
+    private String date;
+    private String neck;
+    private String bust;
+    private String chest;
+    private String waist;
+    private String hip;
+    private String inseam;
+    private String comment;
     private Record selected;
+    private String index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+        context = getApplicationContext();
+        count = (TextView)findViewById(R.id.count);
         recordListView = (ListView) findViewById(R.id.recordListView);
+
         Button deleteButton = (Button) findViewById(R.id.delete_button);
 
         recordListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -48,27 +74,41 @@ public class HomeScreenActivity extends AppCompatActivity {
                 selected = (Record) adapter.getItemAtPosition(pos);
             }
         });
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                if (selected == null) {
+                    Context context = getApplicationContext();
 
+                    CharSequence text = "Please select a record first.";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                } else {
+                    adapter.remove(selected);
+                    saveInFile();
+                    count.setText("Number of records = " + recordList.size());
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+        });
     }
 
-    public void delete(View view) {
-        adapter.remove(selected);
-        saveInFile();
-        adapter.notifyDataSetChanged();
-    }
+
 
     @Override
     protected void onStart(){
         super.onStart();
         loadFormFile();
+        count.setText("Number of records = " + recordList.size());
 
         adapter = new ArrayAdapter<Record>(this,
                 R.layout.list_item, recordList);
         recordListView.setAdapter(adapter);
 
-
-
     }
+
 
     /* Called when the user click the add button */
     public void addRecord(View view){
@@ -76,6 +116,74 @@ public class HomeScreenActivity extends AppCompatActivity {
         Intent intent = new Intent(this, addRecordActivity.class);
         startActivity(intent);
     }
+
+    public void showDetail(View view) {
+        if (selected == null) {
+            Context context = getApplicationContext();
+
+            CharSequence text = "Please select a record first.";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+        } else {
+            String detail = "Detail:\nName: " + selected.getName() +
+                    "\nDate: " + selected.getDate() + "\n" +
+                    "Neck: " + selected.getNeck() + "\n" +
+                    "Bust: " + selected.getBust() + "\n" +
+                    "Chest: " + selected.getChest() + "\n" +
+                    "Waist: " + selected.getWaist() + "\n" +
+                    "Hip: " + selected.getHip() + "\n" +
+                    "Inseam: " + selected.getInseam() + "\n" +
+                    "Comment: " + selected.getComment();
+
+            Intent intent = new Intent(this, showDetailActivity.class);
+            intent.putExtra(EXTRA_DETAIL, detail);
+            startActivity(intent);
+        }
+    }
+
+
+    public void editRecord(View view){
+        if (selected == null) {
+            Context context = getApplicationContext();
+
+            CharSequence text = "Please select a record first.";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+        } else {
+            name = selected.getName();
+            neck = selected.getNeck();
+            bust = selected.getBust();
+            chest = selected.getChest();
+            waist = selected.getWaist();
+            hip = selected.getHip();
+            date = selected.getDate();
+            inseam = selected.getInseam();
+            comment = selected.getComment();
+
+            Intent intent = new Intent(this, editRecordActivity.class);
+            intent.putExtra(EXTRA_NAME, name);
+            intent.putExtra(EXTRA_DATE, date);
+            intent.putExtra(EXTRA_NECK, neck);
+            intent.putExtra(EXTRA_BUST, bust);
+            intent.putExtra(EXTRA_CHEST, chest);
+            intent.putExtra(EXTRA_WAIST, waist);
+            intent.putExtra(EXTRA_HIP, hip);
+            intent.putExtra(EXTRA_INSEAM, inseam);
+            intent.putExtra(EXTRA_COMMENT, comment);
+            index = ""+recordList.indexOf(selected);
+            intent.putExtra(EXTRA_INDEX, index);
+
+            startActivity(intent);
+
+        }
+
+    }
+
+
     private void loadFormFile(){
         try {
             FileInputStream fis = openFileInput(FILENAME);

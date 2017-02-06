@@ -3,8 +3,7 @@
     <string name="edit_person">Edit</string>
     <string name="add_person">Add</string>
     <string name="delete_person">Delete</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
+    <string name="name">Name</string>
     <string name="ask_for_date">Please enter date</string>
     <string name="date_format">yyyy-mm-dd</string>
     <string name="add_size">Please enter the following sizes in inches, numeric</string>
@@ -14,6 +13,8 @@
     <string name="waist">waist size</string>
     <string name="hip">hip size</string>
     <string name="inseam">inseam length</string>
-    <string name="comments">Write comments</string>
+    <string name="comments">Write comments \n (less than 100 characters)</string>
+    <string name="number_format">in inches, numeric</string>
     <string name="confirm">Confirm</string>
+    <string name="title_activity_edit_record2">editRecordActivity2</string>
 </resources>
