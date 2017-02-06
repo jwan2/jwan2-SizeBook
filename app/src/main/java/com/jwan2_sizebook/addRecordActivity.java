@@ -126,7 +126,7 @@ public class addRecordActivity extends AppCompatActivity {
 
     }
 
-
+//To save records
     private void saveInFile() {
         try {
             FileOutputStream fos = openFileOutput(FILENAME,
@@ -146,6 +146,7 @@ public class addRecordActivity extends AppCompatActivity {
         }
     }
 
+    // To load records
     private void loadFromFile(){
         try {
             FileInputStream fis = openFileInput(FILENAME);

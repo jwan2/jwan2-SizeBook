@@ -211,7 +211,9 @@ public class Record {
      * @param num the num
      * @return the string
      */
-//Round
+
+//  This is to Round string to decimal.
+
     public String Round(String num){
         if(num.equals("")){
             return num;
@@ -220,6 +222,8 @@ public class Record {
         output = Math.round(output * 10.0 ) / 10.0;
         return ""+output;
     }
+
+    // This is for showDetailActivity to print the detail.
 
     @Override
     public String toString(){

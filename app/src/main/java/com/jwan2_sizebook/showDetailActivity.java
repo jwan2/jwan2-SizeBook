@@ -20,6 +20,8 @@ public class showDetailActivity extends AppCompatActivity {
 
         TextView detail_record = (TextView)findViewById(R.id.detail_record);
         Intent intent = getIntent();
+
+        // get detail string from HomeScreenActivity
         String detail = intent.getStringExtra(HomeScreenActivity.EXTRA_DETAIL);
         detail_record.setText(detail);
 

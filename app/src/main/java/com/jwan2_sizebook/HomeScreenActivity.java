@@ -188,6 +188,8 @@ public class HomeScreenActivity extends AppCompatActivity {
                     "Inseam: " + selected.getInseam() + "\n" +
                     "Comment: " + selected.getComment();
 
+            //start showDetailActivity
+
             Intent intent = new Intent(this, showDetailActivity.class);
             intent.putExtra(EXTRA_DETAIL, detail);
             startActivity(intent);
@@ -220,6 +222,8 @@ public class HomeScreenActivity extends AppCompatActivity {
             inseam = selected.getInseam();
             comment = selected.getComment();
 
+            //start editRecordActivity
+
             Intent intent = new Intent(this, editRecordActivity.class);
             intent.putExtra(EXTRA_NAME, name);
             intent.putExtra(EXTRA_DATE, date);
@@ -231,6 +235,9 @@ public class HomeScreenActivity extends AppCompatActivity {
             intent.putExtra(EXTRA_INSEAM, inseam);
             intent.putExtra(EXTRA_COMMENT, comment);
             index = ""+recordList.indexOf(selected);
+
+            //  pass the index to editRecordActivity for further edit
+
             intent.putExtra(EXTRA_INDEX, index);
             startActivity(intent);
             finish();

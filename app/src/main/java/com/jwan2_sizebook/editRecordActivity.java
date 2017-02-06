@@ -98,6 +98,7 @@ public class editRecordActivity extends AppCompatActivity {
         commentT.setText(comment);
 
 
+//OnClickListener is to catch the onclick for comfirmbutton
 
         comfirmButton.setOnClickListener(new View.OnClickListener(){
 
